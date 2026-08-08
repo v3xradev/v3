@@ -1,6 +1,6 @@
--- [[ V3xra Hub - Redz Hub Official UI Engine ]]
+-- [[ V3xra Hub - Working Redz Edition ]]
 
-local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/real-redz/redzhub/refs/heads/main/redzlib"))()
+local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/redz-hub/RedzHub/main/redzlib"))()
 
 local Window = redzlib:MakeWindow({
   Title = "⚡ V3xra Hub | Blox Fruits",
@@ -10,7 +10,7 @@ local Window = redzlib:MakeWindow({
   BorderColor = Color3.fromRGB(235, 50, 50)
 })
 
--- Sol Menü Kategorileri (Tabs)
+-- Sol Menü Kategorileri
 local MainTab = Window:MakeTab({"🌾 Level & Farm", "home"})
 local FruitTab = Window:MakeTab({"🍓 Meyve & Item", "cherry"})
 local SeaTab = Window:MakeTab({"🌊 Sea Events", "waves"})
@@ -48,13 +48,6 @@ FruitTab:AddToggle({
   Default = false,
   Callback = function(Value)
     _G.AutoGrabFruit = Value
-  end
-})
-
-FruitTab:AddButton({
-  Name = "Meyve Satın Al (Random Fruit)",
-  Callback = function()
-    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin", "Buy")
   end
 })
 
@@ -103,11 +96,4 @@ CombatTab:AddToggle({
   Callback = function(Value)
     _G.FastM1 = Value
   end
-})
-
--- Sol Alt Bildirim
-redzlib:SetNotification({
-  Title = "V3xra Hub",
-  Description = "Redz Hub Motoru Başarıyla Yüklendi!",
-  Time = 5
 })
