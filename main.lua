@@ -1,22 +1,19 @@
--- [[ V3xra Hub - Standalone Redz Engine ]]
+-- [[ V3xra Hub - Direct GUI ]]
 
 local CoreGui = game:GetService("CoreGui")
 local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
--- Eski Menü Varsa Temizle
 if CoreGui:FindFirstChild("V3xraMainGui") then
     CoreGui.V3xraMainGui:Destroy()
 end
 
--- ScreenGui Oluşturma
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "V3xraMainGui"
 ScreenGui.Parent = CoreGui
 ScreenGui.ResetOnSpawn = false
 
--- Ana Arka Plan Frame
 local MainFrame = Instance.new("Frame")
 MainFrame.Name = "MainFrame"
 MainFrame.Size = UDim2.new(0, 500, 0, 320)
@@ -31,7 +28,6 @@ local MainCorner = Instance.new("UICorner")
 MainCorner.CornerRadius = UDim.new(0, 8)
 MainCorner.Parent = MainFrame
 
--- Sol Dikey Menü (Sidebar)
 local Sidebar = Instance.new("Frame")
 Sidebar.Size = UDim2.new(0, 140, 1, 0)
 Sidebar.BackgroundColor3 = Color3.fromRGB(22, 22, 28)
@@ -51,7 +47,6 @@ LogoLabel.TextSize = 16
 LogoLabel.Font = Enum.Font.GothamBold
 LogoLabel.Parent = Sidebar
 
--- Sağ Üst Kapat Butonu
 local CloseBtn = Instance.new("TextButton")
 CloseBtn.Size = UDim2.new(0, 25, 0, 25)
 CloseBtn.Position = UDim2.new(1, -30, 0, 5)
@@ -65,16 +60,12 @@ CloseBtn.MouseButton1Click:Connect(function()
     ScreenGui:Destroy()
 end)
 
--- İçerik Alanı
 local ContentHolder = Instance.new("Frame")
 ContentHolder.Size = UDim2.new(1, -150, 1, -40)
 ContentHolder.Position = UDim2.new(0, 145, 0, 35)
 ContentHolder.BackgroundTransparency = 1
 ContentHolder.Parent = MainFrame
 
-----------------------------------------------------
--- SAYFALAR VE BUTON TABLALARI
-----------------------------------------------------
 local Pages = {}
 local TabButtons = {}
 
@@ -117,19 +108,16 @@ local function CreateTab(name, id, yPos)
     return Page
 end
 
--- Sayfalar
 local FarmPage = CreateTab("🌾 Level Farm", "farm", 50)
 local FruitPage = CreateTab("🍓 Meyve & Item", "fruit", 88)
 local SeaPage = CreateTab("🌊 Sea Events", "sea", 126)
 local EventPage = CreateTab("🦊 Kitsune Island", "event", 164)
 local CombatPage = CreateTab("⚔️ Fast M1", "combat", 202)
 
--- Varsayılan Sayfa Açılışı
 Pages["farm"].Visible = true
 TabButtons["farm"].BackgroundColor3 = Color3.fromRGB(235, 50, 50)
 TabButtons["farm"].TextColor3 = Color3.fromRGB(255, 255, 255)
 
--- Toggle Oluşturucu
 local function AddToggle(parent, text, yPos, callback)
     local Frame = Instance.new("Frame")
     Frame.Size = UDim2.new(1, -10, 0, 38)
@@ -187,9 +175,6 @@ local function AddToggle(parent, text, yPos, callback)
     end)
 end
 
-----------------------------------------------------
--- AYARLAR
-----------------------------------------------------
 AddToggle(FarmPage, "Auto Level Farm (Seviyene Göre)", 0, function(state) _G.AutoFarmLevel = state end)
 AddToggle(FarmPage, "Auto Quest (Görev Al)", 45, function(state) _G.AutoQuest = state end)
 
